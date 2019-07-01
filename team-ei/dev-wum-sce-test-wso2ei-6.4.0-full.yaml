@@ -11,9 +11,6 @@ infrastructureConfig:
   includes:
      - CentOS-7.5
      - MySQL-5.7
-     - Oracle-SE2-12.1
-     - SQLServer-SE-14.00
-     - Postgres-10.5
      - OpenJDK-8
   provisioners:
   - name: single-node-deployment
