@@ -8,7 +8,6 @@ infrastructureConfig:
   containerOrchestrationEngine: None
   includes:
     - CentOS-7.5
-    #     - SUSE-Linux-12
     - MySQL-5.6
     - Oracle-SE2-12.1
     - SQLServer-SE-14.00
@@ -20,38 +19,38 @@ infrastructureConfig:
       remoteBranch: "4.9.0"
       description: Provision Infra for running intg tests
       scripts:
-      - name: 'prod-wso2-ei-scenario-vfs-be-deployment'
-        description: ''
-        type: CLOUDFORMATION
-        file: esb/Sample-Backends/vfs-be.yaml
-        inputParameters:
-          KeyPairName: "deployment-prod"
-          FTPUserName: "wso2user"
-          FTPUserPassword: "FTPUserPassword"
-      - name: 'prod-wso2-ei-scenario-activemq-be-deployment'
-        description: ''
-        type: CLOUDFORMATION
-        file: esb/Sample-Backends/activemq-be.yaml
-        inputParameters:
-          KeyPairName: "deployment-prod"
-      - name: 'prod-wso2-ei-scenario-deployment'
-        description: ''
-        type: CLOUDFORMATION
-        file: esb/Minimum-HA/esb-ha.yaml
-        inputParameters:
-          parseInfrastructureScript: false
-          KeyPairName: "deployment-prod"
-          CertificateName: "self-signed-cert"
-          DBUsername: "wso2carbon"
-          DBPassword: "DB_Password"
-          region: "us-east-1"
+        - name: 'prod-wso2-ei-scenario-vfs-be-deployment'
+          description: ''
+          type: CLOUDFORMATION
+          file: esb/Sample-Backends/vfs-be.yaml
+          inputParameters:
+            KeyPairName: "deployment-prod"
+            FTPUserName: "wso2user"
+            FTPUserPassword: "FTPUserPassword"
+        - name: 'prod-wso2-ei-scenario-activemq-be-deployment'
+          description: ''
+          type: CLOUDFORMATION
+          file: esb/Sample-Backends/activemq-be.yaml
+          inputParameters:
+            KeyPairName: "deployment-prod"
+        - name: 'prod-wso2-ei-scenario-deployment'
+          description: ''
+          type: CLOUDFORMATION
+          file: esb/Minimum-HA/esb-ha.yaml
+          inputParameters:
+            parseInfrastructureScript: false
+            KeyPairName: "deployment-prod"
+            CertificateName: "self-signed-cert"
+            DBUsername: "wso2carbon"
+            DBPassword: "DB_Password"
+            region: "us-east-1"
 scenarioConfigs:
-- testType: TESTNG
-  remoteRepository: "https://github.com/wso2/product-ei.git"
-  remoteBranch: "master"
-  name: "esb-scenarios"
-  description: "esb-scenarios"
-  file: product-scenarios/test.sh
-  inputParameters:
-    ProductVersion: "ESB-4.9.0"
-    RemoteProductDir: "/usr/lib/wso2/wso2esb/4.9.0/wso2esb-4.9.0"
+  - testType: TESTNG
+    remoteRepository: "https://github.com/wso2/product-ei.git"
+    remoteBranch: "master"
+    name: "esb-scenarios"
+    description: "esb-scenarios"
+    file: product-scenarios/test.sh
+    inputParameters:
+      ProductVersion: "ESB-4.9.0"
+      RemoteProductDir: "/usr/lib/wso2/wso2esb/4.9.0/wso2esb-4.9.0"
